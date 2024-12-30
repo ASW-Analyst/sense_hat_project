@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - dv_schedule
+      - dev_schedule
   pull_request:
     branches:
       - main
