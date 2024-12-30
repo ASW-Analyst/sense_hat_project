@@ -3,8 +3,15 @@
 from sense_hat import SenseHat
 from datetime import datetime
 
+
 class SenseHatMessage:
-    def __init__(self, user_name = "Andy", scroll_speed = 0.05, text_colour = [255, 255, 255], back_colour = [0, 0, 0]):
+    def __init__(
+        self,
+        user_name="Andy",
+        scroll_speed=0.05,
+        text_colour=[255, 255, 255],
+        back_colour=[10, 10, 10],
+    ):
         """
         Initialises the Sense HAT message with custom user arguments.
 
@@ -28,20 +35,20 @@ class SenseHatMessage:
         current_temp = self.sense.get_temperature()
         current_pressure = self.sense.get_pressure()
         return current_time, current_temp, current_pressure
-    
+
     def create_message(self):
         """
         Creates a formatted message for displaying on the LED matrix.
         :return: A formatted string.
         """
         current_time, current_temp, current_pressure = self.get_sensor_data()
-        return(
+        return (
             f"Hello {self.user_name}! "
             f"At {current_time} "
             f"the temperature is {current_temp:.1f}C "
             f"and the pressure is {current_pressure:.1f}hPa"
         )
-    
+
     def display_message(self):
         """
         Displays the formatted message on the LED matrix.
@@ -50,12 +57,13 @@ class SenseHatMessage:
         self.sense.clear()
         self.sense.show_message(
             message,
-            scroll_speed = self.scroll_speed,
-            text_colour = self.text_colour,
-            back_colour = self.back_colour
+            scroll_speed=self.scroll_speed,
+            text_colour=self.text_colour,
+            back_colour=self.back_colour,
         )
         self.sense.clear()
 
+
 if __name__ == "__main__":
-    sense_message = SenseHatMessage(user_name = "Andy")
+    sense_message = SenseHatMessage(user_name="Andy")
     sense_message.display_message()
